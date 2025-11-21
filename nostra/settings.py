@@ -131,3 +131,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Stripe API keys from your Stripe dashboard
+STRIPE_PUBLIC_KEY = 'your-stripe-public-key-here'
+STRIPE_SECRET_KEY = 'your-stripe-secret-key-here'

@@ -16,6 +16,7 @@ def contact(request):
 def about(request):
     return render(request, 'shop/about.html')
 
+@login_required
 def add_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
@@ -40,3 +41,15 @@ def add_to_cart(request, product_id):
 def cart_detail(request):
     cart, created = Cart.objects.get_or_create(user=request.user)
     return render(request, 'shop/cart.html', {'cart': cart})
+
+from .forms import SignUpForm
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')  # Go to login page after sign up
+    else:
+        form = SignUpForm()
+    return render(request, 'registration/signup.html', {'form': form})

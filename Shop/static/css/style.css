@@ -18,6 +18,26 @@ header h1 {
     font-weight: 600;
 }
 
+nav {
+    display: flex;
+    gap: 15px;
+}
+
+.auth-links {
+    display: flex;
+    gap: 15px;
+    font-size: 0.9rem;
+}
+
+.auth-links a, nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-links a:hover, nav a:hover {
+    text-decoration: underline;
+}
 nav a {
     color: white;
     text-decoration: none;
