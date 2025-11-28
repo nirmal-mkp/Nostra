@@ -1,0 +1,10 @@
+Django
+djangorestframework
+strip
+Pillow
+django-crispy-forms
+gunicorn
+django-allauth
+stripe
+mysqlclient
+paypalrestsdk

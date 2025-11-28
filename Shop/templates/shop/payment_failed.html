@@ -1,0 +1,6 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+<h2>Payment Failed</h2>
+<p>Sorry, there was an issue processing your payment.</p>
+{% if error %}<pre style="display: flex; text-align: center;">{{ error }}</pre>{% endif %}
+{% endblock %}
