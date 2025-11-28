@@ -67,7 +67,7 @@ def buy_now(request, product_id):
     CartItem.objects.create(cart=cart, product=product, quantity=1)
     
     # Redirect to checkout/payment page
-    return redirect('cart_detail')  # or your checkout URL
+    return redirect('payment_page')  # or your checkout URL
 
 import stripe
 from django.conf import settings
@@ -100,40 +100,94 @@ import json
     
 from django.shortcuts import render, redirect
 from .paypal import paypalrestsdk
+from .models import Products
 
-def paypal_payment(request):
+# def paypal_payment(request, product_id):
+#     product = get_object_or_404(Products, pk=product_id)
+#     # Here you can also create the PayPal payment (using paypalrestsdk)
+#     # and pass amount, currency, etc. to the template.
+#     context = {
+#         'product': product,
+#         # e.g. 'amount': product.price,
+#     }
+#     return render(request, 'shop/payment.html', context)
+
+# def paypal_payment(request):
+#     if request.method == 'POST':
+#         payment = paypalrestsdk.Payment({
+#             "intent": "sale",
+#             "payer": {
+#                 "payment_method": "paypal"},
+#             "redirect_urls": {
+#                 "return_url": request.build_absolute_uri('/paypal/execute/'),
+#                 "cancel_url": request.build_absolute_uri('/paypal/cancel/')},
+#             "transactions": [{
+#                 "item_list": {
+#                     "items": [{
+#                         "name": "Your Product",
+#                         "sku": "prod1",
+#                         "price": "0.01",
+#                         "currency": "USD",
+#                         "quantity": 1
+#                     }]},
+#                 "amount": {
+#                     "total": "0.01",
+#                     "currency": "USD"
+#                 },
+#                 "description": "Demo purchase."
+#             }]
+#         })
+
+#         if payment.create():
+#             for link in payment.links:
+#                 if link.rel == "approval_url":
+#                     return redirect(link.href)
+#         else:
+#             return render(request, "shop/payment_failed.html", {"error": payment.error})
+#     return render(request, "shop/payment.html")
+
+def paypal_payment(request, product_id):
+    product = get_object_or_404(Products, pk=product_id)
+    
     if request.method == 'POST':
         payment = paypalrestsdk.Payment({
             "intent": "sale",
-            "payer": {
-                "payment_method": "paypal"},
+            "payer": {"payment_method": "paypal"},
             "redirect_urls": {
                 "return_url": request.build_absolute_uri('/paypal/execute/'),
-                "cancel_url": request.build_absolute_uri('/paypal/cancel/')},
+                "cancel_url": request.build_absolute_uri('/paypal/cancel/')
+            },
             "transactions": [{
                 "item_list": {
                     "items": [{
-                        "name": "Your Product",
-                        "sku": "prod1",
-                        "price": "0.01",
+                        "name": product.name,
+                        "sku": f"prod{product.id}",
+                        "price": "0.1",  # Convert to string
                         "currency": "USD",
                         "quantity": 1
-                    }]},
+                    }]
+                },
                 "amount": {
-                    "total": "0.01",
+                    "total": "0.1",  # Convert to string
                     "currency": "USD"
                 },
-                "description": "Demo purchase."
+                "description": f"Purchase of {product.name}"
             }]
         })
 
         if payment.create():
             for link in payment.links:
                 if link.rel == "approval_url":
+                    # Store payment ID in session for execute view
+                    request.session['paypal_payment_id'] = payment.id
                     return redirect(link.href)
         else:
             return render(request, "shop/payment_failed.html", {"error": payment.error})
-    return render(request, "shop/payment.html")
+
+    return render(request, "shop/payment.html", {"product": product})
+
+# def payment_page(request):
+#     return render(request,"shop/payment.html")
 
 import paypalrestsdk
 from django.shortcuts import render, redirect

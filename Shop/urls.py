@@ -15,5 +15,6 @@ urlpatterns = [
     path('payment/', views.paypal_payment, name='paypal_payment'),
     path('paypal/execute/', views.paypal_execute, name='paypal_execute'),
     path('paypal/cancel/', views.paypal_cancel, name='paypal_cancel'),
+    path('paypal/payment/<int:product_id>/', views.paypal_payment, name='paypal_payment'),
 
 ]
