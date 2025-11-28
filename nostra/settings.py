@@ -134,5 +134,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Stripe API keys from your Stripe dashboard
-STRIPE_PUBLIC_KEY = 'your-stripe-public-key-here'
-STRIPE_SECRET_KEY = 'your-stripe-secret-key-here'
+
+# STRIPE_PUBLIC_KEY = 'your-stripe-public-key-here'
+# STRIPE_SECRET_KEY = 'your-stripe-secret-key-here'
+
+# US Nostra Demo App
+PAYPAL_CLIENT_ID = 'AQrJmXNtVrL1Unh3gXDqg4hoxX52-B5wDaqTkQoTylArKXefsiBLiDFYud_Wgz-_08SoLU2MgXuaCc9e'
+PAYPAL_CLIENT_SECRET = 'ENXmXe_NdCGPCziyqhxfp-eePbLW2tJJEr-mVziFe5948lQe-1Irea2NfHvSjlAG8bVM63J2AYAN66Rt'
+
+# IND Nostra
+# PAYPAL_CLIENT_ID = 'Adyt2Z19Yl_S6QH-Vl4XmOX_4Axw7zGgSm1O94NimbaN84jOow5Zi7Nh0EKbrIc65zDaveSIp7dNx6-P'
+# PAYPAL_CLIENT_SECRET = 'ED98oW5kvg-KJdtJ9BnxXEcMNKHRBHdvXLrlePK-TZMjso-o61VaIUnY0vzuAUOpm1Om2OORMDfL6UJn'
+
+# IND Default
+# PAYPAL_CLIENT_ID = 'AdAdvbSiNJwuOIAF1-ZAyeoXM_DUFxRv2DPS-8u5yYm1l39SjG1MiMCvt4-44W5tHH5OtBsql-xsZEwj'
+# PAYPAL_CLIENT_SECRET = 'ECLoklf6lU0NHhaiBucmF1El8NI_WdsuALmAA_ucrQN6JsI_D1QG3p9T0ugO_bqeUvlxny9na-eOrbpg'

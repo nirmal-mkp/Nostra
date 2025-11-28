@@ -11,11 +11,13 @@
         <tr>
             <!-- <td>{{ item.product.image }}</td> -->
             <td> 
-                {% if product.image %} 
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% if item.product.image %} 
+                    {{ item.product.name }}
+                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="width:100px; height:auto; border-radius: 8px;">
+                {% else %}
+                    No image
                 {% endif %}
             </td>
-            <td>{{ item.product.name }}</td>
             <td>{{ item.quantity }}</td>
             <td>₹{{ item.product.price|floatformat:2 }}</td>
         </tr>
@@ -26,3 +28,22 @@
 <p>Your cart is empty.</p>
 {% endif %}
 {% endblock %}
+
+    <!-- <div class="product-list">
+    {% for item in cart.items.all %}
+        <div class="product-card">
+            {% if item.product.image %}
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="width:100px; height:auto; border-radius: 8px;">
+            {% else %}
+                No image
+            {% endif %}
+            <h3>{{ product.name }}</h3>
+            <h3>{{ item.product.name }}</h3>
+            <h3>{{ item.quantity }}</h3>
+            <h3>₹{{ item.product.price }}</h3>
+            
+        </div>
+        {% empty %}
+        <p>No products available.</p>
+    {% endfor %}
+    </div> -->
