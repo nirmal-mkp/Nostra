@@ -17,13 +17,17 @@
             <a href="/contact/">Contact</a>
             <a href="/about/">About Us</a>
             <a href="{% url 'cart_detail' %}">Cart</a>
-        </nav>
-        <nav class="auth-links">
+            
             {% if user.is_authenticated %}
-                <span>Welcome, {{ user.username }}!</span>
-                <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+                <!-- User is logged in -->
+                <span>Hello, {{ user.username }}!</span>
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="font-family: 'Poppins', sans-serif; font-size: 1rem; background:none; border:none; color:inherit; cursor:pointer;">Logout</button>
+                </form>
             {% else %}
-                <a href="{% url 'login' %}?next={{ request.path }}">Login</a>
+                <!-- User is not logged in -->
+                <a href="{% url 'login' %}">Login</a>
                 <a href="{% url 'signup' %}">Signup</a>
             {% endif %}
         </nav>

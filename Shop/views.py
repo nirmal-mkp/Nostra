@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ProductForm
 from .models import Cart, CartItem, Products
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 
 def home(request):
     products = Products.objects.all()
@@ -46,15 +48,23 @@ from .forms import SignUpForm
 
 def signup(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('login')  # Go to login page after sign up
+            user = form.save()
+            login(request, user)  # Auto login after signup
+            return redirect('home')  # or wherever you want
     else:
-        form = SignUpForm()
+        form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
 
-from django.shortcuts import redirect, get_object_or_404
+# from django.shortcuts import redirect, get_object_or_404
+# from django.contrib.auth.views import LogoutView
+
+# class MyLogoutView(LogoutView):
+#     http_method_names = ['get', 'post']
+
+# # In urls.py
+# path('accounts/logout/', MyLogoutView.as_view(), name='logout'),
 
 def buy_now(request, product_id):
     product = get_object_or_404(Products, pk=product_id)
