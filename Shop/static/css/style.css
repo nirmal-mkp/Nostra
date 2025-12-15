@@ -23,13 +23,18 @@ nav {
     gap: 15px;
 }
 
-.auth-links {
+/* .auth-links {
     display: flex;
     gap: 15px;
     font-size: 0.9rem;
-}
-/* 
-.auth-links a, nav a {
+} */
+
+/* .auth-links button {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+} */
+/* .auth-links a, nav a {
     color: white;
     text-decoration: none;
     font-weight: 500;
@@ -40,10 +45,9 @@ nav {
 } */
 nav a {
     color: white;
-    text-decoration: none;
     margin: 0 15px;
+    text-decoration: none;
 }
-
 /* nav a:hover {
     border-bottom: 2px solid white;
 } */
@@ -131,6 +135,7 @@ footer {
     flex-direction: column;
     align-items: center;
     transition: transform 0.1s;
+    gap: 2px;
 }
 
 .product-card:hover {
@@ -139,6 +144,13 @@ footer {
 }
 
 .product-card img {
+    width: 170px;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+.checkout-card img {
     width: 170px;
     height: 170px;
     object-fit: cover;
@@ -177,7 +189,7 @@ footer {
     margin-top: auto;
     transition: background 0.2s;
 }
-.product-card button {
+/* .product-card button {
     background: #0a74da;
     color: white;
     border: none;
@@ -188,7 +200,8 @@ footer {
     cursor: pointer;
     margin-top: auto;
     transition: background 0.2s;
-}
+} */
+
 .product-card button:hover {
     background: #0560b8;
 }
@@ -197,7 +210,7 @@ button {
     cursor: pointer;
 }
 
-.btn-add-to-cart {
+.btn-add-to-cart, .checkout-card button {
     background-color: #0a74da;
     color: white;
     border: none;
@@ -220,6 +233,7 @@ button {
     border-radius: 7px;
     font-family: 'Poppins', sans-serif;
     transition: background-color 0.3s;
+    margin-right: 10px;
 }
 
 .btn-buy-now:hover {

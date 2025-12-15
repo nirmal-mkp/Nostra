@@ -138,6 +138,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # STRIPE_PUBLIC_KEY = 'your-stripe-public-key-here'
 # STRIPE_SECRET_KEY = 'your-stripe-secret-key-here'
 
+LOGIN_REDIRECT_URL = '/'  # Where to go after login
+LOGOUT_REDIRECT_URL = '/'  # Where to go after logout
+
 # US Nostra Demo App
 PAYPAL_CLIENT_ID = 'AQrJmXNtVrL1Unh3gXDqg4hoxX52-B5wDaqTkQoTylArKXefsiBLiDFYud_Wgz-_08SoLU2MgXuaCc9e'
 PAYPAL_CLIENT_SECRET = 'ENXmXe_NdCGPCziyqhxfp-eePbLW2tJJEr-mVziFe5948lQe-1Irea2NfHvSjlAG8bVM63J2AYAN66Rt'

@@ -16,7 +16,7 @@
             <button type="submit" class="btn-add-to-cart">Add to Cart</button>
         </form>
         
-        <form action="{% url 'paypal_payment' %}" method="post" style="display:inline;">
+        <form action="{% url 'paypal_payment' product.id %}" method="get" style="display:inline;">
             {% csrf_token %}
             <button type="submit" class="btn-buy-now">Buy Now</button>
         </form>
